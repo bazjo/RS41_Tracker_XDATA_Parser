@@ -1,6 +1,6 @@
-xdata_length = 19
-in_file_name = 'test.txt'
-out_file_name = 'test-xdata.csv'
+xdata_length = 35
+in_file_name = 'ham1_O2100004.txt'
+out_file_name = 'ham1_O2100004.xdata.csv'
 line_ending = '\n'
 
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         frame_number = (frame_bytes[0x3c] << 8) | frame_bytes[0x3b]
         gps_week = (frame_bytes[0x96] << 8) | frame_bytes[0x95]
         gps_time_of_week = (frame_bytes[0x9A] << 24) | (frame_bytes[0x99] << 16) | (frame_bytes[0x98] << 8) | frame_bytes[0x97]
-        xdata_payload = frame_bytes[0x12E:(0x12E + xdata_length)].decode('utf-8')
+        xdata_payload = frame_bytes[0x12E:(0x12E + xdata_length)].decode('utf_8', errors='ignore')
 
         gps_string = gps_timestamp_to_time_string(gps_week, gps_time_of_week/1000, 0)
 
